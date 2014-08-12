@@ -1,0 +1,7 @@
+((* if not cell_style is defined *))
+    ((* set cell_style = 'style_plain.tplx' *))
+((* endif *))
+((* extends cell_style *))
+((* block docclass *))
+\documentclass{scrartcl}
+((* endblock docclass *))

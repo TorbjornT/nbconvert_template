@@ -1,0 +1,141 @@
+((= Latex base template (must inherit)
+This template builds upon the abstract template, adding common latex output
+functions.  Figures, data_text=))
+((= This line selects the cell style. =))
+((* set cell_style = 'style_bw_python.tplx' *))
+((*- extends 'display_priority.tplx' -*))
+%===============================================================================
+% Abstract overrides
+%===============================================================================
+((* block header *))
+((* block docclass *))((* endblock docclass *))
+((* block packages *))
+\addtokomafont{captionlabel}{\bfseries\small}
+\addtokomafont{caption}{\small}
+\setcapwidth{0.8\linewidth}
+\setcapindent{1em}
+
+\usepackage{graphicx} % Used to insert images
+\usepackage{amsmath} % Equations
+\usepackage{amssymb} % Equations
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % Allow utf-8 characters in the tex document
+\usepackage{booktabs}  % table support for pandoc > 1.12.2
+\usepackage{dcolumn}
+\usepackage[round]{natbib}
+((* endblock packages *))
+
+((* block definitions *))
+% Document parameters
+((* block title *))\title{((( resources.metadata.title | escape_latex )))}((* endblock title *))
+((* block date *))((* endblock date *))
+((* block author *))\author{((( resources.metadata.authors | ascii_only | escape_latex )))}((* endblock author *))
+((* endblock definitions *))
+((* block commands *))
+\usepackage{hyperref}
+\hypersetup{
+  breaklinks=true,  % so long urls are correctly broken across lines
+  hidelinks
+  }
+((* endblock commands *))
+((* endblock header *))
+
+((* block body *))
+\begin{document}
+
+((* block predoc *))
+((* block maketitle *))\maketitle((* endblock maketitle *))
+((* block abstract *))((* endblock abstract *))
+((* endblock predoc *))
+
+((( super() )))
+
+% Add a bibliography block to the postdoc
+((* block postdoc *))
+((* block bibliography *))((* endblock bibliography *))
+((* endblock postdoc *))
+\end{document}
+((* endblock body *))
+
+%===============================================================================
+% Support blocks
+%===============================================================================
+
+% Don't display simple data text
+((* block data_text *))
+((* endblock data_text *))
+
+% Don't display python error
+((* block pyerr *))
+((* endblock pyerr *))
+((* block traceback_line *))
+((* endblock traceback_line *))
+
+% Don't display stream ouput
+((* block stream *))
+((* endblock stream *))
+
+% Display latex
+((* block data_latex -*))
+((*- if output.latex.startswith('$'): -*)) 
+((= Replace $ symbols with more explicit, equation block. =))
+\begin{equation*}
+((( output.latex | strip_dollars )))
+\end{equation*}
+((*- else -*))
+((( output.latex )))
+((*- endif *))
+((* endblock data_latex *))
+
+% Default mechanism for rendering figures
+((*- block data_png -*))((( draw_figure(output.png_filename) )))((*- endblock -*))
+((*- block data_jpg -*))((( draw_figure(output.jpeg_filename) )))((*- endblock -*))
+((*- block data_svg -*))((( draw_figure(output.svg_filename) )))((*- endblock -*))
+((*- block data_pdf -*))((( draw_figure(output['application/pdf_filename']) )))((*- endblock -*))
+
+% Draw a figure using the graphicx package.
+((* macro draw_figure(filename) -*))
+((* set filename = filename | posix_path *))
+((*- block figure scoped -*))
+((*- endblock figure -*))
+((*- endmacro *))
+
+% Draw heading cell.  Explicitly map different cell levels.
+((* block headingcell scoped *))
+
+((* if cell.level == 1 -*))
+((* block h1 -*))\section((* endblock h1 -*))
+((* elif cell.level == 2 -*))
+((* block h2 -*))\subsection((* endblock h2 -*))
+((* elif cell.level == 3 -*))
+((* block h3 -*))\subsubsection((* endblock h3 -*))
+((* elif cell.level == 4 -*))
+((* block h4 -*))\paragraph((* endblock h4 -*))
+((* elif cell.level == 5 -*))
+((* block h5 -*))\subparagraph((* endblock h5 -*))
+((* elif cell.level == 6 -*))
+((* block h6 -*))\\*\textit((* endblock h6 -*))
+((*- endif -*))
+{((( cell.source | replace('\n', ' ') | citation2latex | strip_files_prefix | markdown2latex )))}
+
+((* endblock headingcell *))
+
+% Redirect pyout to display data priority.
+((* block pyout scoped *))
+((* block data_priority scoped *))
+((( super() )))
+((* endblock *))
+((* endblock pyout *))
+
+% Render markdown
+((* block markdowncell scoped *))
+((( cell.source | citation2latex | strip_files_prefix | markdown2latex )))
+((* endblock markdowncell *))
+
+% Don't display unknown types
+((* block unknowncell scoped *))
+((* endblock unknowncell *))
+
+% Disable input cells
+((* block input_group *))
+((* endblock input_group *))
