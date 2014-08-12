@@ -5,7 +5,9 @@ Code cells and output -- including plots -- are ignored.
 The motivation being to create a LaTeX file that takes less cleaning up,
 if it is to be used e.g. as a starting point for a journal article.
 
-Plots are ignored because I want a vector format, and SVG doesn't work with LaTeX.
+Inline plots are ignored because I want a vector format, and SVG doesn't work with LaTeX.
+See the sample notebook for how one can add figures. 
+I won't claim it's ideal.
 
 
 `scrarctl` inherits `plainbase` and defines the documentclass, so use
