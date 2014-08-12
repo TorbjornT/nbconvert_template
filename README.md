@@ -12,3 +12,10 @@ Plots are ignored because I want a vector format, and SVG doesn't work with LaTe
 
     ipython nbconvert --to latex --template scrartcl <notebook>.ipyn
 
+
+If you want a bibliography, add e.g.
+
+    \bibligraphystyle{plainnat}
+    \bibliography{refs}
+
+in a raw cell.
