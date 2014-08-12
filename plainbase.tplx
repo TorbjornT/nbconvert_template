@@ -15,9 +15,9 @@ functions.  Figures, data_text=))
 \setcapwidth{0.8\linewidth}
 \setcapindent{1em}
 
-\usepackage{graphicx} % Used to insert images
-\usepackage{amsmath} % Equations
-\usepackage{amssymb} % Equations
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} % Allow utf-8 characters in the tex document
 \usepackage{booktabs}  % table support for pandoc > 1.12.2
@@ -50,10 +50,6 @@ functions.  Figures, data_text=))
 
 ((( super() )))
 
-% Add a bibliography block to the postdoc
-((* block postdoc *))
-((* block bibliography *))((* endblock bibliography *))
-((* endblock postdoc *))
 \end{document}
 ((* endblock body *))
 
