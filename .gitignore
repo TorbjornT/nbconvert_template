@@ -1,0 +1,5 @@
+.ipynb_checkpoints
+*~
+sample-notebook_files/
+*.tex
+*.pdf
