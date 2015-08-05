@@ -1,5 +1,5 @@
 ((* if not cell_style is defined *))
-    ((* set cell_style = 'style_plain.tplx' *))
+    ((* set cell_style = 'plainbase.tplx' *))
 ((* endif *))
 ((* extends cell_style *))
 ((* block docclass *))
