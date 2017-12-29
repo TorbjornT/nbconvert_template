@@ -12,7 +12,7 @@ I won't claim it's ideal.
 
 `scrarctl` inherits `plainbase` and defines the documentclass, so use
 
-    ipython nbconvert --to latex --template scrartcl <notebook>.ipyn
+    jupyter nbconvert --to latex --template scrartcl <notebook>.ipyn
 
 
 If you want a bibliography, add e.g.
