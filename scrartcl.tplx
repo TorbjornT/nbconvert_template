@@ -4,4 +4,8 @@
 ((* extends cell_style *))
 ((* block docclass *))
 \documentclass{scrartcl}
+\addtokomafont{captionlabel}{\bfseries\small}
+\addtokomafont{caption}{\small}
+\setcapwidth{0.8\linewidth}
+\setcapindent{1em}
 ((* endblock docclass *))

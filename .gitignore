@@ -2,3 +2,7 @@
 *~
 sample-notebook_files/
 .gitignore
+*.aux
+*.log
+*.out
+*.synctex.gz

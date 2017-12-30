@@ -7,14 +7,14 @@
 
 
 
+%foo
 
 \documentclass{scrartcl}
-
-
 \addtokomafont{captionlabel}{\bfseries\small}
 \addtokomafont{caption}{\small}
 \setcapwidth{0.8\linewidth}
 \setcapindent{1em}
+
 
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -25,22 +25,20 @@
 \usepackage{dcolumn}
 \usepackage[round]{natbib}
 
-
-
-% Document parameters
-\title{}
-
-\author{}
-
-
 \usepackage{hyperref}
 \hypersetup{
   breaklinks=true,  % so long urls are correctly broken across lines
   hidelinks
   }
+  
+
+
+\author{Torbjørn Taskjelle}\title{Demo}
+
 
 
 \begin{document}
+
 
 
 \maketitle
@@ -49,9 +47,14 @@
 
 
 
+
 \section{First part}\label{first-part}
 
 And then some fancy words.
+
+\subsection{Sub-section}\label{sub-section}
+
+And even more lorem ipsum.
 
 
 
@@ -65,6 +68,7 @@ cross reference. \label{fig:demo}}
 
 We can refer to this figure, with \ref{fig:demo}, though the cross
 reference of course doesn't work inside the notebook.
+
 
 
 

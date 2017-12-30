@@ -8,13 +8,9 @@ functions.  Figures, data_text=))
 % Abstract overrides
 %===============================================================================
 ((* block header *))
+%foo
 ((* block docclass *))((* endblock docclass *))
 ((* block packages *))
-\addtokomafont{captionlabel}{\bfseries\small}
-\addtokomafont{caption}{\small}
-\setcapwidth{0.8\linewidth}
-\setcapindent{1em}
-
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -23,28 +19,36 @@ functions.  Figures, data_text=))
 \usepackage{booktabs}  % table support for pandoc > 1.12.2
 \usepackage{dcolumn}
 \usepackage[round]{natbib}
-((* endblock packages *))
 
-((* block definitions *))
-% Document parameters
-((* block title *))\title{((( resources.metadata.title | escape_latex )))}((* endblock title *))
-((* block date *))((* endblock date *))
-((* block author *))\author{((( resources.metadata.authors | ascii_only | escape_latex )))}((* endblock author *))
-((* endblock definitions *))
-((* block commands *))
 \usepackage{hyperref}
 \hypersetup{
   breaklinks=true,  % so long urls are correctly broken across lines
   hidelinks
   }
-((* endblock commands *))
+  
+((* endblock packages *))
+
+((* block definitions *))
+((*- if nb.metadata["author"]: -*))
+    \author{((( nb.metadata["author"] )))}
+((*- endif *))
+
+((*- if nb.metadata["title"]: -*))
+    \title{((( nb.metadata["title"] )))}
+((*- else -*))
+    \title{((( resources.metadata.name )))}
+((*- endif *))
+
+((* endblock definitions *))
 ((* endblock header *))
 
 ((* block body *))
 \begin{document}
 
 ((* block predoc *))
-((* block maketitle *))\maketitle((* endblock maketitle *))
+((* block maketitle *))
+\maketitle
+((* endblock maketitle *))
 ((* block abstract *))((* endblock abstract *))
 ((* endblock predoc *))
 
